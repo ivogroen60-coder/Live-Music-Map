@@ -1,1 +1,61 @@
 
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Live Music Venues Map</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!-- PapaParse for CSV parsing -->
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Live Music Venues</h1>
+    <div class="controls">
+      <label for="genreFilter">Genre:</label>
+      <select id="genreFilter">
+        <option value="all">All</option>
+      </select>
+      <input id="csvFileInput" type="file" accept=".csv" title="Upload CSV (overwrite data/venues.csv locally)">
+      <button id="downloadCsvBtn" title="Download current data as CSV">Download CSV</button>
+    </div>
+  </header>
+
+  <main>
+    <aside id="sidebar">
+      <h2>Venues</h2>
+      <ul id="venueList"></ul>
+      <p class="hint">Click a venue to zoom or click a marker on the map. Use "Edit" to set or change a genre, then download updated CSV.</p>
+    </aside>
+
+    <section id="mapContainer">
+      <div id="map"></div>
+    </section>
+  </main>
+
+  <!-- Edit genre modal -->
+  <div id="editModal" class="modal hidden">
+    <div class="modal-content">
+      <h3>Edit Genre</h3>
+      <p id="editVenueName"></p>
+      <input id="genreInput" placeholder="e.g. Rock, Jazz, Electronic" />
+      <div class="modal-actions">
+        <button id="saveGenreBtn">Save</button>
+        <button id="cancelGenreBtn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <small>Built for GitHub Pages • Uses Google Places for images</small>
+  </footer>
+
+  <script src="script.js"></script>
+
+  <!-- Google Maps JS with Places; replace the API_KEY below with yours if you want to edit locally.
+       It is already set in script.js dynamically (recommended) so you can leave this line as-is or remove
+       and let script.js load it programmatically. -->
+  <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script> -->
+</body>
+</html>
